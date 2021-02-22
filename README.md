@@ -1,2 +1,2 @@
 # VVSS
-University
+For university
