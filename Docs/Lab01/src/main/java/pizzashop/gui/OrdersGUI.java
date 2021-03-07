@@ -1,52 +1,48 @@
 package pizzashop.gui;
 
-import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import pizzashop.controller.OrdersGUIController;
 import pizzashop.service.PizzaService;
 
 import java.io.IOException;
+import java.util.Objects;
 
+public class OrdersGUI implements GUI {
+	private final int tableNumber;
+	private final PizzaService service;
 
-public class OrdersGUI {
+	public OrdersGUI(int tableNumber, PizzaService service) {
+		this.tableNumber = tableNumber;
+		this.service = service;
+	}
 
-    protected int tableNumber;
-    public int getTableNumber() {
-        return tableNumber;
-    }
-    public void setTableNumber(int tableNumber) { this.tableNumber = tableNumber; }
-    private PizzaService service;
+	@Override
+	public void show() {
+		VBox vBoxOrders = null;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrdersGUIFXML.fxml"));
+			vBoxOrders = loader.load();
+			OrdersGUIController ordersCtrl = loader.getController();
+			ordersCtrl.setService(service, tableNumber);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-    public void displayOrdersForm(PizzaService service){
-     VBox vBoxOrders = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/OrdersGUIFXML.fxml"));
+		if (Objects.nonNull(vBoxOrders)) {
+			Stage stage = new Stage();
+			stage.setTitle("Table" + getTableNumber() + " order form");
+			stage.setResizable(false);
+			stage.setOnCloseRequest(Event::consume);
+			stage.setScene(new Scene(vBoxOrders));
+			stage.show();
+		}
+	}
 
-            //vBoxOrders = FXMLLoader.load(getClass().getResource("/fxml/OrdersGUIFXML.fxml"));
-            vBoxOrders = loader.load();
-            OrdersGUIController ordersCtrl= loader.getController();
-            ordersCtrl.setService(service, tableNumber);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-     Stage stage = new Stage();
-     stage.setTitle("Table"+getTableNumber()+" order form");
-     stage.setResizable(false);
-     // disable X on the window
-     stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-      @Override
-     public void handle(WindowEvent event) {
-         // consume event
-         event.consume();
-            }
-        });
-     stage.setScene(new Scene(vBoxOrders));
-     stage.show();
-    }
+	public int getTableNumber() {
+		return tableNumber;
+	}
 }
