@@ -43,8 +43,8 @@ public class MainGUI implements GUI {
 				                            ButtonType.NO);
 				ButtonType result = exitAlert.showAndWait().orElse(ButtonType.NO);
 				if (result == ButtonType.YES) {
-					System.out.println("Incasari cash: " + service.getTotalAmount(PaymentType.Cash));
-					System.out.println("Incasari card: " + service.getTotalAmount(PaymentType.Card));
+					System.out.println("Incasari cash: " + service.getTotalAmount(PaymentType.CASH));
+					System.out.println("Incasari card: " + service.getTotalAmount(PaymentType.CARD));
 					stage.close();
 				} else {
 					event.consume();

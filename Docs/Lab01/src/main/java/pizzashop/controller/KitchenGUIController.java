@@ -2,6 +2,7 @@ package pizzashop.controller;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,52 +11,41 @@ import javafx.scene.control.ListView;
 import java.util.Calendar;
 
 public class KitchenGUIController {
-	public static ObservableList<String> order = FXCollections.observableArrayList();
-	private final Calendar now = Calendar.getInstance();
+	public final static ObservableList<String> orderList = FXCollections.observableArrayList();
 	@FXML
 	public Button cook;
 	@FXML
 	public Button ready;
 	@FXML
 	private ListView<String> kitchenOrdersList;
-	private Object selectedOrder;
-	private String extractedTableNumberString = "";
-	private int extractedTableNumberInteger;
 	
 	public void initialize() {
-		//thread for adding data to kitchenOrderList
-		Thread addOrders = new Thread(() -> {
-			while(true) {
-				Platform.runLater(() -> kitchenOrdersList.setItems(order));
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException ex) {
-					break;
-				}
-			}
-		});
+		orderList.addListener((ListChangeListener<String>) c -> Platform.runLater(() -> kitchenOrdersList.setItems(orderList)));
 		
-		//starting thread for adding data to kitchenOrderList
-		addOrders.setDaemon(true);
-		addOrders.start();
 		//Controller for Cook Button
 		cook.setOnAction(event -> {
-			selectedOrder = kitchenOrdersList.getSelectionModel().getSelectedItem();
-			kitchenOrdersList.getItems().remove(selectedOrder);
-			kitchenOrdersList.getItems().add(selectedOrder.toString()
-					.concat(" Cooking started at: ").toUpperCase()
-					.concat(now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE)));
+			Calendar now = Calendar.getInstance();
+			int selectedOrderIndex = kitchenOrdersList.getSelectionModel().getSelectedIndex();
+			
+			if (selectedOrderIndex != -1) {
+				String order = kitchenOrdersList.getItems().remove(selectedOrderIndex);
+				kitchenOrdersList.getItems().add((order + " Cooking started at: ").toUpperCase()
+						+ now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
+			}
 		});
 		//Controller for Ready Button
 		ready.setOnAction(event -> {
-			selectedOrder = kitchenOrdersList.getSelectionModel().getSelectedItem();
-			kitchenOrdersList.getItems().remove(selectedOrder);
-			extractedTableNumberString = selectedOrder.toString().subSequence(5, 6).toString();
-			extractedTableNumberInteger = Integer.parseInt(extractedTableNumberString);
-			System.out.println("--------------------------");
-			System.out.println(
-					"Table " + extractedTableNumberInteger + " ready at: " + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
-			System.out.println("--------------------------");
+			Calendar now = Calendar.getInstance();
+			int selectedOrderIndex = kitchenOrdersList.getSelectionModel().getSelectedIndex();
+			
+			if (selectedOrderIndex != -1) {
+				String order = kitchenOrdersList.getItems().remove(selectedOrderIndex);
+				int extractedTableNumberInteger = Integer.parseInt(order.subSequence(5, 6).toString());
+				System.out.println("--------------------------");
+				System.out.println("Table " + extractedTableNumberInteger + " ready at: "
+						+ now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
+				System.out.println("--------------------------");
+			}
 		});
 	}
 }

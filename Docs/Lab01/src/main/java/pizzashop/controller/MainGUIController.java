@@ -37,10 +37,6 @@ public class MainGUIController {
 	@FXML
 	private MenuItem help;
 	
-	public MainGUIController() {
-	
-	}
-	
 	public void setService(PizzaService service) {
 		this.service = service;
 		tableHandlers();

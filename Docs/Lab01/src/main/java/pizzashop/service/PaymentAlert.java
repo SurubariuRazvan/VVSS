@@ -6,6 +6,7 @@ import pizzashop.model.PaymentType;
 
 public class PaymentAlert implements PaymentOperation {
 	private final PizzaService service;
+	private final String newLineSeparator = "--------------------------";
 
 	public PaymentAlert(PizzaService service) {
 		this.service = service;
@@ -26,10 +27,10 @@ public class PaymentAlert implements PaymentOperation {
 		ButtonType result = paymentAlert.showAndWait().orElse(cancel);
 		if (result == cardPayment) {
 			cardPayment();
-			service.addPayment(tableNumber, PaymentType.Card, totalAmount);
+			service.addPayment(tableNumber, PaymentType.CARD, totalAmount);
 		} else if (result == cashPayment) {
 			cashPayment();
-			service.addPayment(tableNumber, PaymentType.Cash, totalAmount);
+			service.addPayment(tableNumber, PaymentType.CASH, totalAmount);
 		} else {
 			cancelPayment();
 		}
@@ -37,7 +38,7 @@ public class PaymentAlert implements PaymentOperation {
 
 	@Override
 	public void cardPayment() {
-		System.out.println("--------------------------");
+		System.out.println(newLineSeparator);
 		System.out.println("Paying by card...");
 		System.out.println("Please insert your card!");
 		System.out.println("--------------------------");

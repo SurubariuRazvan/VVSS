@@ -25,8 +25,6 @@ import java.util.stream.Collectors;
 
 public class OrdersGUIController {
 	
-	private static double totalAmount;
-	public ObservableList<String> observableList;
 	@FXML
 	protected TableColumn<MenuDataModel, String> tableMenuItem;
 	@FXML
@@ -51,16 +49,8 @@ public class OrdersGUIController {
 	private Button payOrder;
 	@FXML
 	private Button newOrder;
-	private List<String> orderList = FXCollections.observableArrayList();
 	private PizzaService service;
 	private int tableNumber;
-	private TableView<MenuDataModel> table = new TableView<MenuDataModel>();
-	private ObservableList<MenuDataModel> menuData;
-	private final Calendar now = Calendar.getInstance();
-	private List<Double> orderPaymentList = FXCollections.observableArrayList();
-	
-	public OrdersGUIController() {
-	}
 	
 	public void setService(PizzaService service, int tableNumber) {
 		this.service = service;
@@ -70,51 +60,53 @@ public class OrdersGUIController {
 	}
 	
 	private void initData() {
-		menuData = FXCollections.observableArrayList(service.getMenuData());
+		ObservableList<MenuDataModel> menuData = FXCollections.observableArrayList(service.getMenuData());
 		menuData.setAll(service.getMenuData());
 		orderTable.setItems(menuData);
 		
 		//Controller for Place Order Button
 		placeOrder.setOnAction(event -> {
-			orderList = menuData.stream()
+			List<String> orderList = menuData.stream()
 					.filter(x -> x.getQuantity() > 0)
 					.map(menuDataModel -> menuDataModel.getQuantity() + " " + menuDataModel.getMenuItem())
 					.collect(Collectors.toList());
-			observableList = FXCollections.observableList(orderList);
-			KitchenGUIController.order.add("Table" + tableNumber + " " + orderList.toString());
+			
+			KitchenGUIController.orderList.add("Table" + tableNumber + " " + orderList.toString());
+			Calendar now = Calendar.getInstance();
 			orderStatus.setText("Order placed at: " + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
 		});
 		
 		//Controller for Order Served Button
 		orderServed.setOnAction(event -> {
+			Calendar now = Calendar.getInstance();
 			orderStatus.setText("Served at: " + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
 		});
 		
 		//Controller for Pay Order Button
 		payOrder.setOnAction(event -> {
-			orderPaymentList = menuData.stream()
+			double totalAmount = menuData.stream()
 					.filter(x -> x.getQuantity() > 0)
 					.map(menuDataModel -> menuDataModel.getQuantity() * menuDataModel.getPrice())
-					.collect(Collectors.toList());
-			setTotalAmount(orderPaymentList.stream().mapToDouble(e -> e).sum());
-			orderStatus.setText("Total amount: " + getTotalAmount());
+					.mapToDouble(e -> e).sum();
+			
+			orderStatus.setText("Total amount: " + totalAmount);
 			System.out.println("--------------------------");
 			System.out.println("Table: " + tableNumber);
-			System.out.println("Total: " + getTotalAmount());
+			System.out.println("Total: " + totalAmount);
 			System.out.println("--------------------------");
 			PaymentAlert pay = new PaymentAlert(service);
-			pay.showPaymentAlert(tableNumber, this.getTotalAmount());
+			pay.showPaymentAlert(tableNumber, totalAmount);
 		});
 	}
 	
 	public void initialize() {
 		//populate table view with menuData from OrderGUI
-		table.setEditable(true);
 		tableMenuItem.setCellValueFactory(new PropertyValueFactory<>("menuItem"));
 		tablePrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 		tableQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 		
 		//bind pizzaTypeLabel and quantity combo box with the selection on the table view
+		//TODO under this
 		orderTable.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> pizzaTypeLabel.textProperty().bind(newValue.menuItemProperty()));
 		
@@ -142,14 +134,6 @@ public class OrdersGUIController {
 				stage.close();
 			}
 		});
-	}
-	
-	public static double getTotalAmount() {
-		return totalAmount;
-	}
-	
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
 	}
 	
 }
