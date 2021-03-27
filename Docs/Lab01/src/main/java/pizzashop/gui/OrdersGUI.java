@@ -28,6 +28,7 @@ public class OrdersGUI implements GUI {
 			vBoxOrders = loader.load();
 			OrdersGUIController ordersCtrl = loader.getController();
 			ordersCtrl.setService(service, tableNumber);
+			ordersCtrl.initData();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

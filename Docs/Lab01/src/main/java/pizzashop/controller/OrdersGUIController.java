@@ -55,25 +55,16 @@ public class OrdersGUIController {
 	public void setService(PizzaService service, int tableNumber) {
 		this.service = service;
 		this.tableNumber = tableNumber;
-		initData();
-		
 	}
-	
-	private void initData() {
+
+	public void initData() {
 		ObservableList<MenuDataModel> menuData = FXCollections.observableArrayList(service.getMenuData());
 		menuData.setAll(service.getMenuData());
 		orderTable.setItems(menuData);
 		
 		//Controller for Place Order Button
 		placeOrder.setOnAction(event -> {
-			List<String> orderList = menuData.stream()
-					.filter(x -> x.getQuantity() > 0)
-					.map(menuDataModel -> menuDataModel.getQuantity() + " " + menuDataModel.getMenuItem())
-					.collect(Collectors.toList());
-			
-			KitchenGUIController.orderList.add("Table" + tableNumber + " " + orderList.toString());
-			Calendar now = Calendar.getInstance();
-			orderStatus.setText("Order placed at: " + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
+			onPlaceOrderButton(menuData);
 		});
 		
 		//Controller for Order Served Button
@@ -98,7 +89,20 @@ public class OrdersGUIController {
 			pay.showPaymentAlert(tableNumber, totalAmount);
 		});
 	}
-	
+
+	public void onPlaceOrderButton(ObservableList<MenuDataModel> menuData) {
+		List<String> orderList = menuData.stream()
+				.filter(x -> x.getQuantity() > 0)
+				.map(menuDataModel -> menuDataModel.getQuantity() + " " + menuDataModel.getMenuItem())
+				.collect(Collectors.toList());
+
+		if(orderList.size() > 0) {
+			KitchenGUIController.orderList.add("Table" + tableNumber + " " + orderList.toString());
+			Calendar now = Calendar.getInstance();
+			orderStatus.setText("Order placed at: " + now.get(Calendar.HOUR) + ":" + now.get(Calendar.MINUTE));
+		}
+	}
+
 	public void initialize() {
 		//populate table view with menuData from OrderGUI
 		tableMenuItem.setCellValueFactory(new PropertyValueFactory<>("menuItem"));
