@@ -17,3 +17,15 @@ k
 ;src/main/java/pizzashop/controller/OrdersGUIController.java,9\5\9593d6c2aae59b75f1c5ffdb8bb3a549a0c0d8d6
 l
 <src/main/java/pizzashop/controller/KitchenGUIController.java,f\1\f113d329464de76aa1074faec3e0f9b726224347
+X
+(src/main/java/pizzashop/gui/MainGUI.java,0\a\0a9c7aa294f255139f400be8e31b6ee1a1df43bf
+Z
+*src/main/java/pizzashop/gui/OrdersGUI.java,a\d\adc62037ddba64615375bfbd8793cbbef77329f4
+^
+.src/main/java/pizzashop/model/PaymentType.java,3\e\3e5b2ba1de3e25c2703e1861e7561c6da8e2c107
+`
+0src/test/java/pizzashop/service/PayRepoMock.java,7\4\745cd53256a939b3483a8875e053d31a498209c1
+g
+7src/main/java/pizzashop/validator/PaymentValidator.java,3\8\382d4a52888df649339349a9f7602bde983efa4b
+e
+5src/test/java/pizzashop/service/PizzaServiceTest.java,f\4\f496bf34deff9b910e5c4b5fdd20fe2b239503b3
