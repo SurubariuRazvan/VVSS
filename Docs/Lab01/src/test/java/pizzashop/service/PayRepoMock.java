@@ -17,4 +17,8 @@ public class PayRepoMock extends PaymentRepository {
     public List<Payment> getAll() {
         return this.payments;
     }
+
+    public void setPayments(List<Payment> p) {
+        this.payments = p;
+    }
 }

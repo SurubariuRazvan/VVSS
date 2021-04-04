@@ -7,10 +7,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import pizzashop.controller.MainGUIController;
+import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.service.PizzaService;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class MainGUI implements GUI {
@@ -43,8 +45,9 @@ public class MainGUI implements GUI {
 				                            ButtonType.NO);
 				ButtonType result = exitAlert.showAndWait().orElse(ButtonType.NO);
 				if (result == ButtonType.YES) {
-					System.out.println("Incasari cash: " + service.getTotalAmount(PaymentType.Cash));
-					System.out.println("Incasari card: " + service.getTotalAmount(PaymentType.Card));
+					List<Payment> paymentList = service.getPayments();
+					System.out.println("Incasari cash: " + service.getTotalAmount(PaymentType.Cash, paymentList));
+					System.out.println("Incasari card: " + service.getTotalAmount(PaymentType.Card, paymentList));
 					stage.close();
 				} else {
 					event.consume();
