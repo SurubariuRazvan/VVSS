@@ -22,9 +22,9 @@ class PizzaServiceTestBlackBox {
 	}
 	
 	@Tag("BoundTableNumber")
-	@DisplayName("PaymentWithUnderLowerBoundTableNumber")
+	@DisplayName("paymentWithUnderLowerBoundTableNumber")
 	@RepeatedTest(value = 1, name = "{displayName}")
-	void PaymentWithUnderLowerBoundTableNumber_AddPayment_PaymentIsNotAdded() {
+	void paymentWithUnderLowerBoundTableNumber_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(0, PaymentType.Card, 10);
 		
 		assert (payRepoMock.getAll()).isEmpty();
@@ -32,8 +32,8 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("BoundTableNumber")
-	@DisplayName("PaymentWithLowerBoundTableNumber")
-	void PaymentWithLowerBoundTableNumber_AddPayment_PaymentIsAdded() {
+	@DisplayName("paymentWithLowerBoundTableNumber")
+	void paymentWithLowerBoundTableNumber_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Card, 10);
 		
 		pizzaService.addPayment(1, PaymentType.Card, 10);
@@ -46,8 +46,8 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("BoundTableNumber")
-	@DisplayName("PaymentWithUpperBoundTableNumber")
-	void PaymentWithUpperBoundTableNumber_AddPayment_PaymentIsAdded() {
+	@DisplayName("paymentWithUpperBoundTableNumber")
+	void paymentWithUpperBoundTableNumber_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(8, PaymentType.Card, 10);
 		
 		pizzaService.addPayment(8, PaymentType.Card, 10);
@@ -59,10 +59,10 @@ class PizzaServiceTestBlackBox {
 	}
 	
 	@Tag("BoundTableNumber")
-	@DisplayName("PaymentWithAboveUpperBoundTableNumber")
+	@DisplayName("paymentWithAboveUpperBoundTableNumber")
 	@ParameterizedTest(name = "Table number greater than 8 is not valid.")
 	@ValueSource(ints = {9, 10})
-	void PaymentWithAboveUpperBoundTableNumber_AddPayment_PaymentIsNotAdded(int tableNo) {
+	void paymentWithAboveUpperBoundTableNumber_AddPayment_PaymentIsNotAdded(int tableNo) {
 		pizzaService.addPayment(tableNo, PaymentType.Card, 10);
 		
 		assert (payRepoMock.getAll()).isEmpty();
@@ -70,7 +70,7 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("PaymentType")
-	void PaymentWithCardPaymentType_AddPayment_PaymentIsAdded() {
+	void paymentWithCardPaymentType_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Card, 10);
 		
 		pizzaService.addPayment(1, PaymentType.Card, 10);
@@ -83,7 +83,7 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("PaymentType")
-	void PaymentWithCashPaymentType_AddPayment_PaymentIsAdded() {
+	void paymentWithCashPaymentType_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Cash, 10);
 		
 		pizzaService.addPayment(1, PaymentType.Cash, 10);
@@ -96,7 +96,7 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("PaymentType")
-	void PaymentWithNullPaymentType_AddPayment_PaymentIsNotAdded() {
+	void paymentWithNullPaymentType_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(1, null, 10);
 		
 		assert (payRepoMock.getAll()).isEmpty();
@@ -104,7 +104,7 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("PaymentType")
-	void PaymentWithOtherPaymentTypeThanCardOrCash_AddPayment_PaymentIsNotAdded() {
+	void paymentWithOtherPaymentTypeThanCardOrCash_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(1, PaymentType.BotswanaCurrency, 10);
 		
 		assert (payRepoMock.getAll()).isEmpty();
@@ -112,7 +112,7 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("PaymentType")
-	void PaymentWithUnderLowerBoundAmount_AddPayment_PaymentIsNotAdded() {
+	void paymentWithUnderLowerBoundAmount_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(1, PaymentType.Cash, -1);
 		
 		assert (payRepoMock.getAll()).isEmpty();
@@ -120,7 +120,7 @@ class PizzaServiceTestBlackBox {
 	
 	@Test
 	@Tag("BoundAmount")
-	void PaymentWithAboveLowerBoundAmount_AddPayment_PaymentIsAdded() {
+	void paymentWithAboveLowerBoundAmount_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Cash, 10);
 		
 		pizzaService.addPayment(1, PaymentType.Cash, 10);
