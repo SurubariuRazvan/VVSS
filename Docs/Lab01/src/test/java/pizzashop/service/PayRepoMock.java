@@ -7,18 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PayRepoMock extends PaymentRepository {
-    List<Payment> payments = new ArrayList<>();
-    @Override
-    public void add(Payment payment) {
-        payments.add(payment);
-    }
-
-    @Override
-    public List<Payment> getAll() {
-        return this.payments;
-    }
-
-    public void setPayments(List<Payment> p) {
-        this.payments = p;
-    }
+	List<Payment> payments = new ArrayList<>();
+	
+	@Override
+	public void add(Payment payment) {
+		payments.add(payment);
+	}
+	
+	@Override
+	public List<Payment> getAll() {
+		return this.payments;
+	}
 }

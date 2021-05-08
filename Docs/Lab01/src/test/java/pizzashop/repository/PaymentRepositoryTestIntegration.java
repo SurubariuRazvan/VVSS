@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class PaymentRepositoryTest {
+class PaymentRepositoryTestIntegration {
 	
 	@Test
 	void add() {
 		PaymentRepository repository = new PaymentRepository("data/nonEmptyPayments.txt");
 		int sizeBefore = repository.getAll().size();
-		PaymentMock payment = new PaymentMock(0, PaymentType.Cash, 23D);
+		Payment payment = new Payment(0, PaymentType.Cash, 23D);
 		repository.add(payment);
 		List<Payment> after = repository.getAll();
 		assertEquals(sizeBefore + 1, after.size());

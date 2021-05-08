@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class PaymentRepository {
-	private final List<Payment> paymentList;
 	private final String filename;
+	private List<Payment> paymentList;
 	
 	public PaymentRepository() {
 		this("data/payments.txt");
@@ -55,10 +55,10 @@ public class PaymentRepository {
 	
 	public void add(Payment payment) {
 		paymentList.add(payment);
-		writeAll();
+		writeAll(paymentList);
 	}
 	
-	public void writeAll() {
+	public void writeAll(List<Payment> paymentList) {
 		ClassLoader classLoader = PaymentRepository.class.getClassLoader();
 		File file = new File(classLoader.getResource(filename).getFile());
 		
@@ -71,6 +71,7 @@ public class PaymentRepository {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		this.paymentList = paymentList;
 	}
 	
 	public List<Payment> getAll() {

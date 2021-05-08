@@ -7,37 +7,18 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import pizzashop.model.MenuDataModel;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class PizzaServiceTest {
+class PizzaServiceTestBlackBox {
 	
-	PayRepoMock payRepoMock;
-	MenuRepoMock menuRepoMock;
 	PizzaService pizzaService;
+	PayRepoMock payRepoMock;
 	
 	@BeforeEach
 	void setUp() {
 		payRepoMock = new PayRepoMock();
-		menuRepoMock = new MenuRepoMock();
-		pizzaService = new PizzaService(menuRepoMock, payRepoMock);
-	}
-	
-	@Test
-	void serviceGetAll() {
-		List<MenuDataModel> menuData = pizzaService.getMenuData();
-		List<Payment> payments = pizzaService.getPayments();
-		
-		assertEquals(menuData, Collections.emptyList());
-		assertEquals(payments, Collections.emptyList());
+		pizzaService = new PizzaService(null, payRepoMock);
 	}
 	
 	@Tag("BoundTableNumber")
@@ -148,61 +129,5 @@ class PizzaServiceTest {
 		assert (payRepoMock.getAll().get(0).getTableNumber()) == expectedPayment.getTableNumber();
 		assert (payRepoMock.getAll().get(0).getAmount()) == expectedPayment.getAmount();
 		assert (payRepoMock.getAll().get(0).getType()) == expectedPayment.getType();
-	}
-	
-	@Test
-	void F02_TC01() {
-		List<Payment> payments = null;
-		
-		double amount = pizzaService.getTotalAmount(PaymentType.Cash, payments);
-		
-		assert (amount) == 0;
-	}
-	
-	@Test
-	void F02_TC02() {
-		List<Payment> payments = new ArrayList<>();
-		
-		double amount = pizzaService.getTotalAmount(PaymentType.Cash, payments);
-		
-		assert (amount) == 0;
-	}
-	
-	@Test
-	void F02_TC03() {
-		List<Payment> payments = Arrays.asList(new Payment(1, PaymentType.Card, 10));
-		
-		double amount = pizzaService.getTotalAmount(PaymentType.Cash, payments);
-		
-		assert (amount) == 0;
-	}
-	
-	@Test
-	void F02_TC04() {
-		List<Payment> payments = Arrays.asList(new Payment(1, PaymentType.Cash, 10));
-		
-		double amount = pizzaService.getTotalAmount(PaymentType.Cash, payments);
-		
-		assert (amount) == 10;
-	}
-	
-	@Test
-	void F02_TC05() {
-		List<Payment> payments = Arrays.asList(new Payment(1, PaymentType.Cash, 10), new Payment(2, PaymentType.Cash, 10));
-		
-		double amount = pizzaService.getTotalAmount(PaymentType.Cash, payments);
-		
-		assert (amount) == 20;
-	}
-	
-	@Test
-	void F02_TC06() {
-		List<Payment> payments = Arrays.asList(new Payment(1, PaymentType.Cash, 10),
-				new Payment(2, PaymentType.Cash, 10),
-				new Payment(2, PaymentType.Card, 10));
-		
-		double amount = pizzaService.getTotalAmount(PaymentType.Cash, payments);
-		
-		assert (amount) == 20;
 	}
 }
