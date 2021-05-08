@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 
-class PizzaServiceTestBlackBox {
+class PizzaServiceBlackBoxTest {
 	
 	PizzaService pizzaService;
 	PayRepoMock payRepoMock;

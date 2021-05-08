@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PizzaTestServiceWhiteBox {
+public class PizzaServiceWhiteBoxTest {
 	
 	PizzaService pizzaService;
 	PayRepoMock payRepoMock;

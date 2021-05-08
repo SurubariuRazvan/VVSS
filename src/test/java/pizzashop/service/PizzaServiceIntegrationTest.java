@@ -15,7 +15,7 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PizzaServiceTestIntegration {
+class PizzaServiceIntegrationTest {
 	
 	PaymentRepository payRepo;
 	PizzaService pizzaService;
