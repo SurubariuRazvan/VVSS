@@ -110,7 +110,6 @@ public class OrdersGUIController {
 		tableQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 		
 		//bind pizzaTypeLabel and quantity combo box with the selection on the table view
-		//TODO under this
 		orderTable.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> pizzaTypeLabel.textProperty().bind(newValue.menuItemProperty()));
 		
