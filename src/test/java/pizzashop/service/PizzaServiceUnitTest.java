@@ -101,8 +101,8 @@ class PizzaServiceUnitTest {
 //	@DisplayName("PaymentWithAboveUpperBoundTableNumber")
 //	@ParameterizedTest(name = "Table number greater than 8 is not valid.")
 //	@ValueSource(ints = {9, 10})
-	void PaymentWithAboveUpperBoundTableNumber_AddPayment_PaymentIsNotAdded(int tableNo) {
-		pizzaService.addPayment(tableNo, PaymentType.Card, 10);
+	void PaymentWithAboveUpperBoundTableNumber_AddPayment_PaymentIsNotAdded() {
+		pizzaService.addPayment(9, PaymentType.Card, 10);
 		
 		assert (payRepoMock.getAll()).isEmpty();
 	}
