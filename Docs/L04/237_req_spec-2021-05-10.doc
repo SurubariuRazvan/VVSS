@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>reqspec Prj237 - tmir2631_ReqSpec:F01</title>
+<link type="text/css" rel="stylesheet" href="http://localhost:81/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo"  width= height= src="http://localhost:81/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></p></div>
+<div class="doc_title"><p>Requirements Specification Document</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Prj237</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 10/05/2021</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><br/><p style="padding-left: 20px;"><b><a href="#toc_1">1. tmir2631_ReqSpec:F01 : tmir2631_ReqSpec:F01</a></b></p>
+<p style="padding-left: 45px;"><a href="#toc_req1252">tmir2631_F01 : Adaugarea unui Payment</a></p><p style="padding-left: 45px;"><a href="#toc_req4515">tmir2631_F02 : Insumare a platilor de un anumit tip</a></p></div><p style="page-break-before: always"></p><table class="req_spec"><tr><th colspan="2"><h2 class="doclevel"> <span class="label">1. Requirements Spec.:</span> tmir2631_ReqSpec:F01 : tmir2631_ReqSpec:F01</h2></th></tr>
+<a name='toc_1'></a>
+<tr><td width="20%"><span class="label">revision</span></td><td> 1</td></tr>
+<tr><td width="20%"><span class="label">Author</span></td><td> tmir2631</td></tr>
+<tr><td width="20%"><span class="label">Type</span></td><td>Section</td></tr><tr><td width="20%"><span class="label">Total count of requirements (Coverage)</span></td><td>N/A (2/0)</td></tr><tr><td colspan="2"><p>Plasarea unei comenzi</p></td></tr></table><br/>
+<table class="req" ><tr><th colspan="2"><span class="label">Requirement:</span> tmir2631_F01 : Adaugarea unui Payment</th></tr>
+<tr><td valign="top"><span class="label">Version :</span></td><td>1</td></tr>
+<tr><td valign="top"><span class="label">revision:</span></td><td>3</td></tr>
+<a name="toc_req1252"></a><tr><td valign="top"><span class="label">Author:</span></td><td>tmir2631</td></tr>
+<tr><td width="20%"><span class="label">Status</span></td><td>Implemented</td></tr><tr><td width="20%"><span class="label">Type</span></td><td>Feature</td></tr><tr><td width="20%"><span class="label">Coverage</span></td><td>10% (1/10)</td></tr><tr><td colspan="2"> <br/><p>Adugarea unui Paymeny</p>
+
+<p>pre:</p>
+
+<p>Payment.Type is Card or Cash</p>
+
+<p>Payment.Type!=null</p>
+
+<p>Payment.Amount double &gt; 0</p>
+
+<p>Payment.TableNumber integer between 1 &amp; 8</p>
+
+<p>post:</p>
+
+<p>Se creaza un Payment cu detalile specificate si se aduga in lista cu Payment-uri</p></td></tr><tr><td width="20%"><span class="label">Related Test Cases</span></td><td>237-27 : 237-1 : Valid_BVA &nbsp;[Version :1]237-28 : 237-1 : Non_Valid_BVA &nbsp;[Version :1]237-29 : 237-3 : Valid_ECP &nbsp;[Version :1]237-30 : 237-4 : Non_Valid_ECP &nbsp;[Version :1]237-69 : testare unitarăpentru E, R şi S; &nbsp;[Version :1]237-70 : integrare R &nbsp;[Version :1]237-71 : integrare E &nbsp;[Version :1]</td></tr></table><br/><table class="req" ><tr><th colspan="2"><span class="label">Requirement:</span> tmir2631_F02 : Insumare a platilor de un anumit tip</th></tr>
+<tr><td valign="top"><span class="label">Version :</span></td><td>1</td></tr>
+<tr><td valign="top"><span class="label">revision:</span></td><td>1</td></tr>
+<a name="toc_req4515"></a><tr><td valign="top"><span class="label">Author:</span></td><td>srir2623</td></tr>
+<tr><td width="20%"><span class="label">Status</span></td><td>Draft</td></tr><tr><td width="20%"><span class="label">Type</span></td><td>Use Case</td></tr><tr><td width="20%"><span class="label">Coverage</span></td><td>100% (1/1)</td></tr><tr><td colspan="2"> <br/><p>Insumare a platilor de un anumit tip</p></td></tr><tr><td width="20%"><span class="label">Related Test Cases</span></td><td>237-38 : 237-12 : getTotalAmount_NonValid &nbsp;[Version :1]237-37 : 237-11 : getTotalAmount_Valid &nbsp;[Version :1]237-69 : testare unitarăpentru E, R şi S; &nbsp;[Version :1]237-70 : integrare R &nbsp;[Version :1]237-71 : integrare E &nbsp;[Version :1]</td></tr></table><br/>
+</body>
+</html>
