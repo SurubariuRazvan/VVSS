@@ -21,9 +21,10 @@ class PizzaServiceBlackBoxTest {
 		pizzaService = new PizzaService(null, payRepoMock);
 	}
 	
-	@Tag("BoundTableNumber")
-	@DisplayName("paymentWithUnderLowerBoundTableNumber")
-	@RepeatedTest(value = 1, name = "{displayName}")
+	@Test
+//	@Tag("BoundTableNumber")
+//	@DisplayName("paymentWithUnderLowerBoundTableNumber")
+//	@RepeatedTest(value = 1, name = "{displayName}")
 	void paymentWithUnderLowerBoundTableNumber_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(0, PaymentType.Card, 10);
 		
@@ -31,8 +32,8 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("BoundTableNumber")
-	@DisplayName("paymentWithLowerBoundTableNumber")
+//	@Tag("BoundTableNumber")
+//	@DisplayName("paymentWithLowerBoundTableNumber")
 	void paymentWithLowerBoundTableNumber_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Card, 10);
 		
@@ -45,8 +46,8 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("BoundTableNumber")
-	@DisplayName("paymentWithUpperBoundTableNumber")
+//	@Tag("BoundTableNumber")
+//	@DisplayName("paymentWithUpperBoundTableNumber")
 	void paymentWithUpperBoundTableNumber_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(8, PaymentType.Card, 10);
 		
@@ -58,10 +59,11 @@ class PizzaServiceBlackBoxTest {
 		assert (payRepoMock.getAll().get(0).getType()) == expectedPayment.getType();
 	}
 	
-	@Tag("BoundTableNumber")
-	@DisplayName("paymentWithAboveUpperBoundTableNumber")
-	@ParameterizedTest(name = "Table number greater than 8 is not valid.")
-	@ValueSource(ints = {9, 10})
+	@Test
+//	@Tag("BoundTableNumber")
+//	@DisplayName("paymentWithAboveUpperBoundTableNumber")
+//	@ParameterizedTest(name = "Table number greater than 8 is not valid.")
+//	@ValueSource(ints = {9, 10})
 	void paymentWithAboveUpperBoundTableNumber_AddPayment_PaymentIsNotAdded(int tableNo) {
 		pizzaService.addPayment(tableNo, PaymentType.Card, 10);
 		
@@ -69,7 +71,7 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("PaymentType")
+//	@Tag("PaymentType")
 	void paymentWithCardPaymentType_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Card, 10);
 		
@@ -82,7 +84,7 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("PaymentType")
+//	@Tag("PaymentType")
 	void paymentWithCashPaymentType_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Cash, 10);
 		
@@ -95,7 +97,7 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("PaymentType")
+//	@Tag("PaymentType")
 	void paymentWithNullPaymentType_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(1, null, 10);
 		
@@ -103,7 +105,7 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("PaymentType")
+//	@Tag("PaymentType")
 	void paymentWithOtherPaymentTypeThanCardOrCash_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(1, PaymentType.BotswanaCurrency, 10);
 		
@@ -111,7 +113,7 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("PaymentType")
+//	@Tag("PaymentType")
 	void paymentWithUnderLowerBoundAmount_AddPayment_PaymentIsNotAdded() {
 		pizzaService.addPayment(1, PaymentType.Cash, -1);
 		
@@ -119,7 +121,7 @@ class PizzaServiceBlackBoxTest {
 	}
 	
 	@Test
-	@Tag("BoundAmount")
+//	@Tag("BoundAmount")
 	void paymentWithAboveLowerBoundAmount_AddPayment_PaymentIsAdded() {
 		Payment expectedPayment = new Payment(1, PaymentType.Cash, 10);
 		
