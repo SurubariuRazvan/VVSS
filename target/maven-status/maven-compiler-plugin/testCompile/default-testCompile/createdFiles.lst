@@ -1,0 +1,10 @@
+pizzashop\model\PaymentUnitTest.class
+pizzashop\PizzaServiceBlackBoxTest.class
+PizzaServiceBlackBoxTest.class
+pizzashop\repository\PaymentRepositoryIntegrationTest.class
+pizzashop\service\PizzaServiceUnitTest.class
+pizzashop\service\PizzaServiceBlackBoxTest.class
+pizzashop\service\PizzaServiceIntegrationTest.class
+pizzashop\service\PayRepoMock.class
+pizzashop\service\PizzaServiceWhiteBoxTest.class
+pizzashop\repository\PaymentRepositoryUnitTest.class

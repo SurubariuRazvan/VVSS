@@ -21,6 +21,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.23.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>2.23.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.6.0</version>
@@ -84,18 +96,6 @@
             <artifactId>controlsfx</artifactId>
             <version>11.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.0.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.6.28</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -121,8 +121,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <skip>false</skip>
-                    <failIfNoTests>false</failIfNoTests>
+<!--                    <skip>false</skip>-->
+<!--                    <failIfNoTests>false</failIfNoTests>-->
                 </configuration>
             </plugin>
             <plugin>
