@@ -122,7 +122,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <skip>false</skip>
-                    <!--                <failIfNoTests>false</failIfNoTests>-->
+                    <failIfNoTests>false</failIfNoTests>
                 </configuration>
             </plugin>
             <plugin>
